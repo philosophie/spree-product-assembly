@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <table class="index table table-bordered">
+    <thead>
+      <tr>
+        <th><%= Spree.t(:sku) %></th>
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:options) %></th>
+        <th><%= Spree.t(:qty) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.each do |item| %>
+        <tr id="<%= dom_id(item, :sel)%>">
+          <td><%= item.sku %></td>
+          <td><%= item.product.name %></td>
+          <td><%= variant_options item %></td>
+          <td><%= text_field_tag :count, @product.count_of(item) %></td>
+          <td class="actions">
+            <%= image_tag "spinner.gif", :style => "display:none", :class => "spinner" %>
+            <%= link_to(icon('edit'),
+                        set_count_admin_product_item_url(@product, item),
+                        :class => "set_count_admin_product_item_link save-line-item fa fa-ok no-text") %>
+
+            <%= link_to(icon('delete'),
+                        remove_admin_product_item_url(@product, item),
+                        :class => "remove_admin_product_item_link delete-line-item fa fa-trash no-text") %>
+          </td>
+        </tr>
+      <% end %>
+      <% if items.empty? %>
+       <tr><td colspan="5"><%= Spree.t(:none) %>.</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= javascript_tag("subscribe_product_item_links();") if request.xhr? %>

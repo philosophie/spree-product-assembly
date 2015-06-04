@@ -16,14 +16,14 @@ module Spree
             price: li.price.to_f
           }
 
-          if li.parts.present?
+          if li.items.present?
             bundled_items = []
-            li.parts.each do |part|
+            li.items.each do |item|
               bundled_items << {
-                product_id: part.sku,
-                name: part.name,
-                quantity: li.count_of(part),
-                price: part.price.to_f
+                product_id: item.sku,
+                name: item.name,
+                quantity: li.count_of(item),
+                price: item.price.to_f
               }
             end
             hsh[:bundled_items] = bundled_items

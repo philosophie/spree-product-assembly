@@ -1,0 +1,2 @@
+$("#product_items").html("<%= escape_javascript(render(:partial => "items_table", :locals => {:items => @product.items})) %>");
+$("#search_hits").hide();

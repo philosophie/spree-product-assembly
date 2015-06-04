@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
 
   s.author            = 'Roman Smirnov'
   s.email             = 'POMAHC@gmail.com'
-  s.homepage          = 'https://github.com/spree-contrib/spree-product-assembly'
+  s.homepage          = 'https://github.com/philosophie/spree-product-assembly'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- spec/*`.split("\n")
@@ -29,4 +29,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'database_cleaner', '~> 1.3'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'pg'
+  s.add_development_dependency 'pry-rails'
+  s.add_development_dependency 'pry-byebug'
+
+  s.metadata['allowed_push_host'] =
+    "This gem is private and shouldn't be pushed to any public repos"
 end

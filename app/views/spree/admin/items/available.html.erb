@@ -1,0 +1,62 @@
+<script type="text/javascript">
+  function displayRow(){
+    var row = document.getElementById("captionRow");
+    if (row.style.display == '') row.style.display = 'none';
+    else row.style.display = '';
+  }
+</script>
+
+<h4><%= Spree.t(:available_items) %></h4>
+<div class="panel panel-default">
+  <div class="panel-heading no-borderb">
+    <h1 class="panel-title">Add to Collection</h1>
+  </div>
+
+  <table class="index table table-bordered">
+    <thead>
+      <tr>
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:options) %></th>
+        <th><%= Spree.t(:qty) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @available_products.each do |product| %>
+        <tr id="<%= dom_id(product) %>">
+
+          <td><%= product.name %></td>
+          <td>
+            <% if product.has_variants? %>
+              <%= select_tag "item[id]",
+                  options_for_select(product.variants.map { |v| [variant_options(v), v.id] }) %>
+            <% else %>
+              <%= hidden_field_tag "item[id]", product.master.id %>
+              <%= Spree.t(:no_variants) %>
+            <% end %>
+          </td>
+          <td><%= text_field_tag "item[count]", 1 %></td>
+          <td class="actions">
+            <%= image_tag "spinner.gif", :style => "display:none", :class => "spinner" %>
+            <%= link_to(icon('add') + ' ' + Spree.t(:select),
+                        admin_product_items_path(@product),
+                        class: "btn btn-primary add_product_item_link") %>
+          </td>
+        </tr>
+      <% end %>
+      <% if @available_products.empty? %>
+       <tr><td colspan="3"><%= Spree.t(:no_match_found) %>.</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= javascript_tag do %>
+  $("a.add_product_item_link").click(function(){
+    item_id_val = $('select option:selected', $(this).parent().parent()).val() ||
+                  $('input:first', $(this).parent().parent()).val();
+    params = { item_count :  $('input:last', $(this).parent().parent()).val(),
+               item_id : item_id_val};
+    return make_post_request($(this), params);
+  });
+<% end %>

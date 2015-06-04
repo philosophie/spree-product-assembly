@@ -1,27 +1,25 @@
 require 'spec_helper'
 
-module Spree
-  describe Variant do
-    context "filter assemblies" do
-      let(:mug) { create(:product) }
-      let(:tshirt) { create(:product) }
-      let(:variant) { create(:variant) }
+describe Spree::Variant do
+  context 'filter collections' do
+    let(:mug) { create(:product) }
+    let(:tshirt) { create(:product) }
+    let(:variant) { create(:variant) }
 
-      context "variant has more than one assembly" do
-        before { variant.assemblies.push [mug, tshirt] }
+    context 'variant has more than one collection' do
+      before { variant.collections.push [mug, tshirt] }
 
-        it "returns both products" do
-          expect(variant.assemblies_for([mug, tshirt])).to include mug
-          expect(variant.assemblies_for([mug, tshirt])).to include tshirt
-        end
-
-        it { expect(variant).to be_a_part }
+      it 'returns both products' do
+        expect(variant.collections_for([mug, tshirt])).to include(mug)
+        expect(variant.collections_for([mug, tshirt])).to include(tshirt)
       end
 
-      context "variant no assembly" do
-        it "returns both products" do
-          variant.assemblies_for([mug, tshirt]).should be_empty
-        end
+      it { expect(variant).to be_an_item }
+    end
+
+    context 'variant no collection' do
+      it 'returns both products' do
+        variant.collections_for([mug, tshirt]).should be_empty
       end
     end
   end

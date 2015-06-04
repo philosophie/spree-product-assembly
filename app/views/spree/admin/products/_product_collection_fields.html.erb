@@ -1,0 +1,19 @@
+<div class="form-group field">
+  <%= f.label :can_be_item, Spree.t(:can_be_item)%>
+  <%= f.check_box(:can_be_item) %>
+</div>
+<div class="form-group field">
+  <%= f.label :individual_sale, Spree.t(:individual_sale)%>
+  <%= f.check_box(:individual_sale) %>
+</div>
+
+<% if @product.collection? %>
+  <% content_for :head do %>
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+        $("input[id='product_on_hand']").attr('disabled',true).parent().hide();
+        $("input#product_can_be_item").attr('disabled',true);
+      });
+    </script>
+  <% end %>
+<% end %>

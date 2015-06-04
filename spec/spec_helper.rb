@@ -12,7 +12,13 @@ require 'database_cleaner'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/poltergeist'
+
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
 Capybara.javascript_driver = :poltergeist
+#Capybara.javascript_driver = :selenium_chrome
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f }
 
@@ -26,6 +32,8 @@ require 'spree/testing_support/capybara_ext'
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = false
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
 
   config.before :suite do
     Capybara.match = :prefer_exact
@@ -42,6 +50,8 @@ RSpec.configure do |config|
     end
 
     DatabaseCleaner.start
+
+    create(:store)
   end
 
   config.after(:each) do

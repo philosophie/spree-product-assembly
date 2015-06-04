@@ -1,14 +1,16 @@
-<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+<%= render :partial => 'spree/admin/shared/sub_menu/product' %>
 
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => "Parts"} %>
-<div id="product_parts">
-  <%= render :partial => "parts_table", :locals => {:parts => @parts} %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => "Items"} %>
+<div id="product_items" data-hook="items-in-collection">
+  <%= render :partial => "items_table", :locals => {:items => @items} %>
 </div>
 
-<%= form_tag('#') do %>
-  <label><%= Spree.t(:search) %>:</label>
-  <input id="searchtext" size="25">
-  <button id="search_parts_button" class="fa fa-search button" name="button">Search</button>
+<%= form_tag'#' do %>
+  <div class="form-group">
+    <label><%= Spree.t(:search) %>:</label>
+    <input id="searchtext", class="form-control">
+    <button id="search_items_button" class="btn btn-primary" name="button">Search</button>
+  </div>
 <% end %>
 
 <br/>
@@ -20,41 +22,41 @@
    *
    */
 
-  function search_for_parts(){
+  function search_for_items(){
     $.ajax({
-     data: {q: $("#searchtext").val() }, 
+     data: {q: $("#searchtext").val() },
      dataType: 'html',
      success: function(request){
        jQuery('#search_hits').html(request);
        $('#search_hits').show();
-     }, 
-     type: 'POST', 
-     url: '<%= available_admin_product_parts_url(@product) %>'
-    });    
+     },
+     type: 'POST',
+     url: '<%= available_admin_product_items_url(@product) %>'
+    });
   }
 
   $("#searchtext").keypress(function (e) {
     if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-      search_for_parts();
+      search_for_items();
       return false;
     } else {
        return true;
     }
   });
 
-  $("#search_parts_button").click(function(e) {
+  $("#search_items_button").click(function(e) {
     e.preventDefault();
-    search_for_parts();
+    search_for_items();
   });
 
-  function subscribe_product_part_links()
+  function subscribe_product_item_links()
   {
-    $("a.set_count_admin_product_part_link").click(function(){
+    $("a.set_count_admin_product_item_link").click(function(){
       params = { count :  $("input", $(this).parent().parent()).val() };
       return make_post_request($(this), params);
     });
-    
-    $("a.remove_admin_product_part_link").click(function(){
+
+    $("a.remove_admin_product_item_link").click(function(){
       return make_post_request($(this), {});
     });
   }
@@ -70,5 +72,5 @@
     return false;
   }
 
-  subscribe_product_part_links();
+  subscribe_product_item_links();
 <% end -%>

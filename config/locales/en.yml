@@ -1,12 +1,12 @@
 ---
 en:
   spree:
-    available_parts: Available parts
-    can_be_part: Can be part
+    available_items: Available items
+    can_be_item: Can be item
     individual_sale: Individual sale
     no_variants: No variants
-    parts: Parts
-    assembly_cannot_be_part: assembly can't be part
+    items: Items
+    collection_cannot_be_item: collection can't be item
     product_bundles: Product Bundles
-    parts_included: Parts included
-    part_of_bundle: 'Part of bundle %{sku}'
+    items_included: Items included
+    item_of_bundle: 'Item of bundle %{sku}'
