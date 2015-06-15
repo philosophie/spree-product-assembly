@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_product_assembly'
-  s.version     = '3.0.1-rc.2'
+  s.version     = '3.0.1-rc.3'
   s.summary     = 'Adds oportunity to make bundle of products to your Spree store'
   s.description = s.summary
   s.required_ruby_version = '>= 1.9.3'

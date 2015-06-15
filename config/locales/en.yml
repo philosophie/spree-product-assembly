@@ -1,6 +1,7 @@
 ---
 en:
   spree:
+    actions_title: Actions
     available_items: Available items
     available_in_collections: Available in collections?
     collections: Collections

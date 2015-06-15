@@ -23,7 +23,7 @@ describe 'Parts', type: :feature, js: true do
     end
 
     within('#product_items') do
-      page.should have_content(mug.sku)
+      page.should have_content(mug.name)
     end
   end
 end

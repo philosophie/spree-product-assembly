@@ -5,12 +5,12 @@
   <%= render :partial => "items_table", :locals => {:items => @items} %>
 </div>
 
-<%= form_tag'#' do %>
+<%= form_tag '#', class: 'form-inline' do %>
   <div class="form-group">
     <label><%= Spree.t(:search) %>:</label>
     <input id="searchtext", class="form-control">
-    <button id="search_items_button" class="btn btn-primary" name="button">Search</button>
   </div>
+  <button id="search_items_button" class="btn btn-primary" name="button">Search</button>
 <% end %>
 
 <br/>
