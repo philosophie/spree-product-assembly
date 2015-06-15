@@ -14,7 +14,7 @@ describe 'Parts', type: :feature, js: true do
 
   it 'add and remove item' do
     visit spree.admin_product_path(tshirt)
-    click_on 'Items'
+    click_on 'Collections'
     fill_in 'searchtext', with: mug.name
     click_on 'Search'
 

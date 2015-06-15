@@ -22,7 +22,8 @@ describe Spree::Product do
       product.should be_collection
       product.can_be_item = true
       product.valid?
-      product.errors[:can_be_item].should == ["collection can't be item"]
+      product.errors[:can_be_item]
+        .should == ["collection can't be in other collections"]
     end
 
     it 'changing item qty changes count on_hand' do

@@ -2,11 +2,12 @@
 en:
   spree:
     available_items: Available items
-    can_be_item: Can be item
-    individual_sale: Individual sale
+    available_in_collections: Available in collections?
+    collections: Collections
+    collection_cannot_be_item: collection can't be in other collections
+    make_line_on_the_consumer_site: Make live on the consumer site?
     no_variants: No variants
-    items: Items
-    collection_cannot_be_item: collection can't be item
     product_bundles: Product Bundles
+    items: Items
     items_included: Items included
     item_of_bundle: 'Item of bundle %{sku}'

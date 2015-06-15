@@ -1,3 +1,6 @@
 <li<%= ' class="active"' if current == "Items" %>>
-  <%= link_to_with_icon 'sitemap', Spree.t(:items), admin_product_items_url(@product) %>
+  <%= link_to admin_product_items_url(@product), class: 'icon-link' do %>
+    <span class="icon icon-basket"></span>
+    <span class="text"><%= Spree.t(:collections) %></span>
+  <% end %>
 </li>
