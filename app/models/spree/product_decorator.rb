@@ -22,6 +22,10 @@ Spree::Product.class_eval do
       .limit(30)
   }
 
+  # TODO: once bux w/ future inventory is worked out,
+  # consider filtering for Products that actually have >0 items
+  scope :collections, -> { individual_saled.where(can_be_item: false) }
+
   validate :collection_cannot_be_item, if: :collection?
 
   def add_item(variant, count = 1)
