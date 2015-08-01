@@ -18,8 +18,8 @@
           <td><%= text_field_tag :count, @product.count_of(item) %></td>
           <td class="actions">
             <%= image_tag 'spinner.gif', style: 'display:none', class: 'spinner' %>
-            <%= link_to_with_icon 'save', Spree.t('actions.save'), set_count_admin_product_item_url(@product, item), class: 'set_count_admin_product_item_link save-line-item btn btn-success btn-sm', title: Spree.t('actions.save'), no_text: true %>
-            <%= link_to_with_icon 'delete', Spree.t(:delete), remove_admin_product_item_url(@product, item), class: 'remove_admin_product_item_link delete-line-item btn btn-danger btn-sm', title: Spree.t(:delete), no_text: true %>
+            <%= link_to_with_icon 'save', Spree.t('actions.save'), set_count_admin_product_item_url(@product, item), class: 'set_count_admin_product_item_link btn btn-success btn-sm', title: Spree.t('actions.save'), no_text: true %>
+            <%= link_to_with_icon 'delete', Spree.t(:delete), remove_admin_product_item_url(@product, item), class: 'remove_admin_product_item_link btn btn-danger btn-sm', title: Spree.t(:delete), no_text: true %>
           </td>
         </tr>
       <% end %>
